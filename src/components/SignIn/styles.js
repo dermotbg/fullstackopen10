@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import theme from '../../theme';
 
 
 export const styles = StyleSheet.create({
@@ -22,7 +21,8 @@ export const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    margin: 12,
+    marginBottom: 5,
+    marginTop: 2,
     borderRadius: 5,
     borderWidth: 1,
     padding: 10,
