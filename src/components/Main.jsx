@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native';
 import { Route, Routes, Navigate } from 'react-router-native';
 
-import RepositoryList from './RepositoryList';
-import AppBar from './AppBar/AppBar';
+import RepositoryList from './RepositoryList/index.jsx';
+import AppBar from './AppBar';
 import theme from '../theme';
 import SignIn from './SignIn';
 

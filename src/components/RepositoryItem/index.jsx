@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native'
 import theme from '../../theme';
-import RepositoryItemBody from './RepositoryItemBody';
-import RepositoryItemStats from './RepositoryItemStats';
+import RepositoryItemBody from './components/RepositoryItemBody';
+import RepositoryItemStats from './components/RepositoryItemStats';
 
 const RepositoryItem = ({ item }) => {
 
