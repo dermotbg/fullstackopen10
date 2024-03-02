@@ -5,7 +5,7 @@ import { styles } from './styles'
 import theme from '../../theme';
 
 import useSignIn from '../hooks/useSignIn';
-import AuthStorage from '../../utils/authStorage';
+import { useNavigate } from 'react-router-native';
 
 
 const initialValues = {
@@ -29,12 +29,12 @@ const validationSchema = yup.object().shape({
 const SignIn = () => {
 
   const login = useSignIn()
-  const tokenStore = new AuthStorage()
+  const navigate = useNavigate();
   
   const onSubmit = async (values) => {
     try {
-      const { data } = await login.signIn(values)
-      await tokenStore.setAccessToken(data.authenticate.accessToken)
+      await login.signIn(values)
+      navigate('/');
     } catch (error) {
       console.log(error)
       throw new Error('An error has occurred' + error)
