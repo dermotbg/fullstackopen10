@@ -4,14 +4,15 @@ import * as yup from 'yup';
 import { styles } from './styles'
 import theme from '../../theme';
 
+import useSignIn from '../hooks/useSignIn';
+
+
 const initialValues = {
-  username: '',
-  password: ''
+  username: 'kalle',
+  password: 'password'
 };
 
-const onSubmit = (values) => {
-  console.log(values);
-};
+
 
 const validationSchema = yup.object().shape({
   username: yup.string()
@@ -26,13 +27,19 @@ const validationSchema = yup.object().shape({
 
 const SignIn = () => {
 
+  const login = useSignIn()
+  
+  const onSubmit = async (values) => {
+    const { data } = await login.signIn(values)
+    console.log(data.authenticate.accessToken)
+  };
+
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit
   });
 
-  
 
   return(
     <View style={styles.container}>
