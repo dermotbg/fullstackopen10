@@ -5,6 +5,7 @@ import { styles } from './styles'
 import theme from '../../theme';
 
 import useSignIn from '../hooks/useSignIn';
+import AuthStorage from '../../utils/authStorage';
 
 
 const initialValues = {
@@ -28,10 +29,16 @@ const validationSchema = yup.object().shape({
 const SignIn = () => {
 
   const login = useSignIn()
+  const tokenStore = new AuthStorage()
   
   const onSubmit = async (values) => {
-    const { data } = await login.signIn(values)
-    console.log(data.authenticate.accessToken)
+    try {
+      const { data } = await login.signIn(values)
+      await tokenStore.setAccessToken(data.authenticate.accessToken)
+    } catch (error) {
+      console.log(error)
+      throw new Error('An error has occurred' + error)
+    }
   };
 
   const formik = useFormik({
