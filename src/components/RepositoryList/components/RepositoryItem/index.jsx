@@ -17,7 +17,7 @@ const RepositoryItem = ({ item }) => {
 
 
     return(
-        <View style={styles.container}>
+        <View style={styles.container} testID="repositoryItem">
           <RepositoryItemBody styles={styles} item={item.item} />
           <RepositoryItemStats styles={styles} item={item.item} numberCompactor={numberCompactor} />
         </View>
