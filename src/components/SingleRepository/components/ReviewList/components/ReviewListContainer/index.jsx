@@ -1,4 +1,4 @@
-import { FlatList, ScrollView, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import theme from "../../../../../../theme";
 import ReviewItem from "../ReviewItem";
 

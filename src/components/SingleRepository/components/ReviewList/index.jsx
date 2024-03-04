@@ -1,4 +1,4 @@
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator } from "react-native";
 import ReviewListContainer from "./components/ReviewListContainer/index.jsx";
 import useReviews from "../../../hooks/useReviews.js";
 import { useParams } from "react-router-native";
@@ -17,10 +17,6 @@ const ReviewList = () => {
     throw new Error('An error has occurred' + error)
   }
 
-  return(
-    <View>
-      <ReviewListContainer reviews={data}/>
-    </View>
-  )
+  return <ReviewListContainer reviews={data}/>
 }
 export default ReviewList;
