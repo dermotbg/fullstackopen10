@@ -37,7 +37,9 @@ export const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     flexWrap: 'wrap',
     flexShrink: 1,
-    
+  },
+  centerText: {
+    textAlign: 'center'
   },
   forceWrap: {
     maxWidth: '75%'

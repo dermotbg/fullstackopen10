@@ -4,6 +4,7 @@ import useRepository from "../hooks/useRepository";
 import { ActivityIndicator, View } from "react-native";
 import RepositoryLink from "./components/RepositoryLink";
 import { styles } from "../SignIn/styles";
+import ReviewList from "./components/ReviewList";
 
 const SingleRepository = () => {
 
@@ -27,6 +28,7 @@ const SingleRepository = () => {
     <View style={styles.container}>
       <RepositoryItem item={formedData}></RepositoryItem>
       <RepositoryLink url={data.repository.url} />
+      <ReviewList />
     </View>
   )
 }
