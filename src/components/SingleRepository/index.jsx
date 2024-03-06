@@ -13,6 +13,7 @@ const SingleRepository = () => {
   const {data, loading, error }  = useRepository(repoId)
 
   if(loading) return <ActivityIndicator size={'large'}/>
+  if(!data && !data.repository) return <ActivityIndicator size={'large'}/>
   if(error) {
     console.log(error)
     throw new Error('An error has occurred' + error)

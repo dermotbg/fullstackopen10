@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 const initialValues = {
   ownerName: '',
-  rating: 0,
+  rating: '',
   repositoryName: '',
   text: ''
 };

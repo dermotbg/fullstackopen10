@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
   flexCol: {
     display: 'flex',
     flexFlow: 'column-wrap',
+    flexBasis: '80%',
     maxWidth: '85%'
   },
   rating: {

@@ -1,10 +1,15 @@
+import userCreateReview from "../hooks/useCreateReview";
 import CreateReviewContainer from "./components/CreateReviewContainer";
 
 const CreateReview = () => {
 
-  //usemutation call + logic etc etc 
+  const { submitReview } = userCreateReview()
+
   const onSubmit = (data) => {
-    console.log(data)
+    submitReview({
+      ...data,
+      rating: Number(data.rating)
+  })
   }
 
   return <CreateReviewContainer onSubmit={onSubmit} />
