@@ -1,31 +1,35 @@
 import { ActivityIndicator } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
 import useRepositories from '../hooks/useRepositories';
 import RepositoryListContainter from './components/RespositoryListContainer';
 import { useEffect, useState } from 'react';
-import theme from '../../theme';
+import { useDebounce } from "use-debounce";
 
 const RepositoryList = () => {
 
   const [sort, setSort] = useState('latest')
+  const [filter, setFilter] = useState('')
+  const debouncedFilter = useDebounce(filter, 1000)
   const [sortArgs, setSortArgs] = useState({ orderBy: 'CREATED_AT', orderDirection: 'DESC' })
   
   useEffect(() => {
     switch (sort) {
       case 'latest':
-        setSortArgs({ orderBy: 'CREATED_AT', orderDirection: 'DESC' })
+        setSortArgs({ orderBy: 'CREATED_AT', orderDirection: 'DESC', filter: debouncedFilter[0] })
         break;
       case 'highest':
-        setSortArgs({ orderBy: 'RATING_AVERAGE', orderDirection: 'DESC' })
+        setSortArgs({ orderBy: 'RATING_AVERAGE', orderDirection: 'DESC', filter: debouncedFilter[0] })
         break;
       case 'lowest':
-        setSortArgs({ orderBy: 'RATING_AVERAGE', orderDirection: 'ASC' })
+        setSortArgs({ orderBy: 'RATING_AVERAGE', orderDirection: 'ASC', filter: debouncedFilter[0] })
+        break;
+      case 'filter':
+        setSortArgs({ orderBy: 'CREATED_AT', orderDirection: 'DESC', filter: debouncedFilter[0] })
         break;
       default:
-        setSortArgs({ orderBy: 'CREATED_AT', orderDirection: 'ASC' })
+        setSortArgs({ orderBy: 'CREATED_AT', orderDirection: 'DESC', filter: debouncedFilter[0] })
         break;
     }
-  },[sort])
+  },[sort, debouncedFilter[0]])
 
   const {data, loading, error }  = useRepositories(sortArgs)
 
@@ -37,16 +41,13 @@ const RepositoryList = () => {
 
   return (
     <>
-    <Picker
-      selectedValue={sort}
-      onValueChange={(value) => setSort(value)}
-      style={{ backgroundColor: theme.colors.secondary }}
-    >
-      <Picker.Item label="Latest repositories" value={'latest'}/> 
-      <Picker.Item label="Highest rated repositories" value={'highest'}/> 
-      <Picker.Item label="Lowest rated repositories" value={'lowest'}/> 
-    </Picker>
-      <RepositoryListContainter repositories={data.repositories} />
+      <RepositoryListContainter 
+      repositories={data.repositories} 
+      sort={sort} 
+      setSort={setSort} 
+      filter={filter}
+      setFilter={setFilter}
+      />
     </>
   )
 };
