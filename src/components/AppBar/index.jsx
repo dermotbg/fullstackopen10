@@ -6,7 +6,7 @@ import useSignOut from '../hooks/useSignOut';
 
 
 const AppBar = () => {
-  const getUser = useUser();
+  const getUser = useUser(false);
   const { signOut } = useSignOut();
 
   return (
@@ -20,6 +20,7 @@ const AppBar = () => {
             </>
           : <>
               <AppBarTab styles={styles} title={'Create Review'} route={'/createReview'} />
+              <AppBarTab styles={styles} title={'My Reviews'} route={'/myreviews'} />
               <AppBarTab styles={styles} title={'Sign Out'} route={'/signin'} pFunc={signOut} />
             </>
         }
