@@ -4,7 +4,7 @@ import { CREATE_REVIEW } from "../../graphql/mutations";
 import { useNavigate } from "react-router-native";
 
 const userCreateReview = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [createReview, { data }] = useMutation(CREATE_REVIEW, {
     onError: (error) => {

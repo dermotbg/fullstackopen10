@@ -73,7 +73,7 @@ const SignUpFormContainer = ({ onSubmit }) => {
       <Button
         testID='submitButton'
         color={theme.colors.primary}
-        title={'Sign In'}
+        title={'Sign Up'}
         onPress={formik.handleSubmit}
       />
     </View>
