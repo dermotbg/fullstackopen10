@@ -37,4 +37,7 @@ export const styles = StyleSheet.create({
     fontSize: theme.fontSizes.subheading,
     fontWeight: 'bold',
   },
+  button: {
+    padding: 100
+  }
 });

@@ -14,14 +14,13 @@ const UserReviews = () => {
     throw new Error('An error has occurred' + error)
   }
 
-  console.log(data.me.reviews.edges)
   const formedData = {
     repository: {
       ...data.me
     }
   }
 
-  return <ReviewListContainer reviews={formedData} />
+  return <ReviewListContainer reviews={formedData} userView={true} />
 
 };
 

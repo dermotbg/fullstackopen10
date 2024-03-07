@@ -17,8 +17,7 @@ const useCreateUser = () => {
 
   const submitUser = async (userData) => {
     try {
-      const createdUser = await createUser({ variables: { user: { username: userData.username, password: userData.password } } })
-      console.log(createdUser)
+      await createUser({ variables: { user: { username: userData.username, password: userData.password } } })
       if(createUser){
         await signIn({ username: userData.username, password: userData.password })
         navigate('/')

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const ReviewListContainer = ({ reviews }) => {
+const ReviewListContainer = ({ reviews, userView = false }) => {
 
   const reviewNode = reviews
     ? reviews.repository.reviews.edges.map(e => e.node)
@@ -28,6 +28,7 @@ const ReviewListContainer = ({ reviews }) => {
             <ReviewItem
               keyExtractor={item => item.id}
               review={item.item}
+              userView={userView}
             />
           )
         }}
