@@ -1,4 +1,4 @@
-import { Button, Pressable, Text, View } from "react-native";
+import { Alert, Button, Pressable, Text, View } from "react-native";
 
 import { format, parseISO } from 'date-fns'
 
@@ -15,6 +15,27 @@ const ReviewItem = ({ review, userView }) => {
   const { deleteReview }  = useDeleteReview();
   const repoID = review.id.split(".")
   repoID.shift()
+
+  const handleDelete = (id) => {
+    Alert.alert(
+      'Delete Review',
+      'Are you sure you wish to delete this review?',
+      [
+        {
+          text: 'Cancel',
+          style: 'default'
+        },
+        {
+          text: 'Confirm',
+          onPress: () => deleteReview(id),
+          style: 'default'
+        },
+      ],
+      {
+        cancelable: true
+      }
+    )
+  };
 
   return(
     <View>
@@ -48,9 +69,7 @@ const ReviewItem = ({ review, userView }) => {
             <Button 
             title={'Delete Review'} 
             color={'#ff4c4c'} 
-            onPress={() => {
-              deleteReview(review.id)
-            }}
+            onPress={() => handleDelete(review.id)}
             />
           </View>
           : null
