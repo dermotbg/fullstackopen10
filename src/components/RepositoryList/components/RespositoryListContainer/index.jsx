@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-// const RepositoryListContainter = ({ repositories, sort, setSort, filter, setFilter }) => {
 class RepositoryListContainter extends React.Component {
   renderHeader = () => {
     const props = this.props;
@@ -34,6 +33,9 @@ class RepositoryListContainter extends React.Component {
       : [];
     return repositoryNodes
   }
+  onEndReach = () => {
+    this.props.fetchMore()
+  }
   render() {
     return (
       <View>
@@ -41,6 +43,7 @@ class RepositoryListContainter extends React.Component {
           data={(this.repositoryNodes())}
           ItemSeparatorComponent={ItemSeparator}
           ListHeaderComponent={this.renderHeader()}
+          onEndReached={() => this.onEndReach()}
           renderItem={(item) => {
             return (
               <Pressable>

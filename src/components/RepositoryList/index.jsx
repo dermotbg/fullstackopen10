@@ -31,7 +31,11 @@ const RepositoryList = () => {
     }
   },[sort, debouncedFilter[0]])
 
-  const {data, loading, error }  = useRepositories(sortArgs)
+  const {data, loading, error, fetchMore }  = useRepositories({
+    first: 5,
+    sortArgs: sortArgs
+  })
+
 
   if(loading) return <ActivityIndicator size={'large'} style={{paddingTop: 10}}/>
   if(error) {
@@ -47,6 +51,7 @@ const RepositoryList = () => {
       setSort={setSort} 
       filter={filter}
       setFilter={setFilter}
+      fetchMore={fetchMore}
       />
     </>
   )
