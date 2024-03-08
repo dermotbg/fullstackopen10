@@ -31,7 +31,7 @@ Backend used: https://github.com/fullstack-hy2020/rate-repository-api
 
 ### My Reviews List: 
 ![image](https://github.com/dermotbg/fullstackopen10/assets/123154617/a3714ea0-5075-4a30-a516-3b1971e95251)
-- On Delete Alert:
+### On Delete Alert:
 ![image](https://github.com/dermotbg/fullstackopen10/assets/123154617/45561685-b16e-4c3f-b568-910ce8991b4c)
 
 ### Create Review Form (taken with no information submitted):
