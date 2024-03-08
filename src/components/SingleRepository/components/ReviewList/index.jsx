@@ -7,7 +7,10 @@ const ReviewList = () => {
 
   const { repoId } = useParams();
 
-  const { data, loading, error } = useReviews(repoId);
+  const { data, loading, error, fetchMore } = useReviews({ 
+    repoId: repoId,
+    first: 6,
+  });
 
   if (loading){
     return <ActivityIndicator size={'large'}/>
@@ -17,6 +20,6 @@ const ReviewList = () => {
     throw new Error('An error has occurred' + error)
   }
 
-  return <ReviewListContainer reviews={data}/>
+  return <ReviewListContainer reviews={data} fetchMore={fetchMore} />
 }
 export default ReviewList;

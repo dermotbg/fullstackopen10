@@ -1,19 +1,5 @@
 import { gql } from "@apollo/client";
-
-
-const CORE_DETAILS = gql`
-  fragment CoreDetails on Repository {
-    fullName
-    description
-    language
-    stargazersCount
-    forksCount
-    reviewCount
-    ratingAverage
-    ownerAvatarUrl
-    id
-  }
-`
+import { CORE_DETAILS } from "./fragments";
 
 export const GET_REPOSITORIES = gql`
   query repositories(
@@ -75,11 +61,11 @@ export const GET_REPO_BY_ID = gql`
 `;
 
 export const GET_REVIEWS_BY_ID = gql`
-query repository($repositoryId: ID!) {
+query repository($repositoryId: ID!, $first: Int, $after: String) {
   repository(id: $repositoryId) {
     id
     fullName
-    reviews {
+    reviews (first: $first, after: $after){
       edges {
         node {
           id
@@ -91,6 +77,12 @@ query repository($repositoryId: ID!) {
             username
           }
         }
+      }
+      pageInfo {
+        startCursor
+        endCursor
+        hasNextPage
+        hasPreviousPage
       }
     }
   }

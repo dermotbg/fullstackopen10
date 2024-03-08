@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const ReviewListContainer = ({ reviews, userView = false }) => {
+const ReviewListContainer = ({ reviews, userView = false, fetchMore }) => {
 
   const reviewNode = reviews
     ? reviews.repository.reviews.edges.map(e => e.node)
@@ -23,6 +23,7 @@ const ReviewListContainer = ({ reviews, userView = false }) => {
       <FlatList
         data={reviewNode}
         ItemSeparatorComponent={ItemSeparator}
+        onEndReached={() => fetchMore ? fetchMore() : null}
         renderItem={(item) =>{
           return (
             <ReviewItem
